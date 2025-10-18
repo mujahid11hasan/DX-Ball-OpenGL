@@ -1,4 +1,3 @@
-
 // Features: 2 Levels, Timer, Help Screen, Sound (PlaySound), Perks (3), Highscore
 // Compile with MinGW (Code::Blocks)
 
@@ -517,9 +516,22 @@ void specialKeyUp(int key, int x, int y){
 }
 
 void passiveMotion(int x, int y){
-    paddleX = (float)x - paddleW/2.0f;
+    static float prevX = x;
+    float targetX = (float)x - paddleW / 2.0f;
+
+    // difference between current and target position
+    float dx = targetX - paddleX;
+
+    // apply smooth movement speed limit (same speed as keyboard)
+    float maxMove = PADDLE_SPEED * (1.0f / 60.0f);  // assuming 60fps
+    if (dx > maxMove) dx = maxMove;
+    else if (dx < -maxMove) dx = -maxMove;
+
+    paddleX += dx;
     paddleX = clampf(paddleX, 0.0f, WINW - paddleW);
+    prevX = x;
 }
+
 
 int main(int argc, char** argv){
     srand((unsigned int)time(nullptr));
@@ -550,4 +562,3 @@ int main(int argc, char** argv){
     glutMainLoop();
     return 0;
 }
-
