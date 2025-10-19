@@ -337,7 +337,7 @@ void display(){
 
     if(gameState == MENU){
         glColor3f(0.95f,0.88f,0.1f);
-        drawText(WINW/2 - 120, WINH/2 + 80, "DX-BALL (Final)");
+        drawText(WINW/2 - 70, WINH/2 + 80, "DX-BALL");
         glColor3f(1,1,1);
         drawText(WINW/2 - 220, WINH/2 + 40, "Controls: Mouse or A/D or Left/Right to move paddle");
         drawText(WINW/2 - 220, WINH/2 + 20, "Space - Launch ball | P - Pause | H - Help | Esc - Quit");
